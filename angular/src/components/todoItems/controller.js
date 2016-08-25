@@ -6,6 +6,10 @@ export default class TodoItem {
     this.props = localStoreService.getProps()
   }
 
+  toggle (index) {
+    localStoreService.toggleItem(index)
+  }
+
   delete (index) {
     localStoreService.removeItem(index)
   }

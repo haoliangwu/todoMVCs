@@ -18,9 +18,14 @@ export default {
     this.items.push(
       {
         index: this.items.length,
-        text: query
+        text: query,
+        status: false
       }
     )
+  },
+
+  toggleItem(index) {
+    this.items[index].status = !this.items[index].status
   },
 
   cleanItems() {

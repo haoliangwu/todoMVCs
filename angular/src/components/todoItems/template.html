@@ -1,6 +1,15 @@
 <ul>
     <li class='item' ng-repeat="item in $ctrl.items | filter:$ctrl.props.query">
-        <span>{{item.text}}<button class='delete-btn' ng-click="$ctrl.delete(item.index)"/></span>
+        <span ng-class="item.status?'done':'pending'">{{item.text}}</span>
+
+        <div class='btn-groups'>
+            <button class='toggle item-btn' ng-click="$ctrl.toggle(item.index)" />
+            <button class='delete item-btn' ng-click="$ctrl.delete(item.index)" />
+            <div>
     </li>
 </ul>
-<button ng-click="$ctrl.clear()">Clean All</button>
+<button class='btn' ng-click="$ctrl.clear()">Clean All</button>
+<div ng-hide="$ctrl.items.length === 0">
+<h4>Metedata</h4>
+<pre>{{$ctrl.items | filter:$ctrl.props.query | json}}</pre>
+</div>
