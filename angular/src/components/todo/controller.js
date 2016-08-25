@@ -1,3 +1,5 @@
+import { localStoreService } from '../../services'
+
 export default class TodoController {
   constructor () {
     this.name = 'TodoMVC'

@@ -1,6 +1,6 @@
 import angular from 'angular'
-import { todo } from './components'
+import { todo, todoItems } from './components'
 
-angular.module('todomvc', [todo])
+angular.module('todomvc', [todo, todoItems])
 
 if (module.hot) module.hot.accept()
