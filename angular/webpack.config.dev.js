@@ -13,7 +13,14 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, include: path.resolve(__dirname, 'src'), loader: 'babel-loader' }
+      { test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src')
+      },
+      { test: /\.html$/,
+        loader: 'html'
+      }
     ]
   },
   plugins: [
