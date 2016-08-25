@@ -1,0 +1,9 @@
+# vscode
+.vscode
+
+# webpack
+dist
+build
+
+# node
+node_modules
