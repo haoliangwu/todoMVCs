@@ -1,5 +1,7 @@
 <section>
     <h1>{{$ctrl.name}}</h1>
-    <input placeholder={{$ctrl.placeholder}} ng-model="$ctrl.query" autofocus/>
+    <form ng-submit="$ctrl.addToDoItem($ctrl.query)">
+        <input placeholder={{$ctrl.placeholder}} ng-model="$ctrl.query" autofocus/>
+    </form>
     {{$ctrl.query}}
 </section>

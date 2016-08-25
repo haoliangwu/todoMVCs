@@ -15,12 +15,14 @@ var dashboard = new Dashboard()
 compiler.apply(new DashboardPlugin(dashboard.setData))
 
 app.use(require('webpack-dev-middleware')(compiler, {
-  // noInfo: true,
   quiet: true,
-  publicPath: '/'
+  publicPath: config.output.publicPath
 }))
 
-app.use(require('webpack-hot-middleware')(compiler))
+app.use(require('webpack-hot-middleware')(compiler, {
+  log: () => {
+  }
+}))
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'src/index.html'))
