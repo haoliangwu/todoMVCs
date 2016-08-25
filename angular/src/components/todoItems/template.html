@@ -1,5 +1,6 @@
 <ul>
-    <li ng-repeat="item in $ctrl.items">
-        {{item}}
+    <li class='item' ng-repeat="item in $ctrl.items | filter:$ctrl.props.query">
+        <span>{{item.text}}<button class='delete-btn' ng-click="$ctrl.delete(item.index)"/></span>
     </li>
 </ul>
+<button ng-click="$ctrl.clear()">Clean All</button>

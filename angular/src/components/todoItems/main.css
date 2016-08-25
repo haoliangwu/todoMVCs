@@ -1,0 +1,11 @@
+.delete-btn {
+    display: none;
+}
+
+.item:hover .delete-btn {
+    display: inline-block;
+}
+
+.delete-btn:after {
+    content: 'x'
+}

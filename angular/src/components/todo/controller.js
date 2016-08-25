@@ -7,9 +7,15 @@ export default class TodoController {
     this.placeholder = 'add todo..'
   }
 
+  handleChange () {
+    localStoreService.setProps({query: this.query})
+  }
+
   addToDoItem (query) {
     localStoreService.addItem(query)
+
     // reset query str
     this.query = ''
+    localStoreService.setProps({query: this.query})
   }
 }
