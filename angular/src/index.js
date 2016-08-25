@@ -1,3 +1,5 @@
 import angular from 'angular'
 
-angular.module('todo', [])
+angular.module('todomvc', [])
+
+if (module.hot) module.hot.accept()
