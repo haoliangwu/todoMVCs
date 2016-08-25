@@ -1,1 +1,3 @@
-console.log(1)
+import angular from 'angular'
+
+angular.module('todo', [])
