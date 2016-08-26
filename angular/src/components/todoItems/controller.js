@@ -1,9 +1,12 @@
 import { localStoreService } from '../../services'
 
 export default class TodoItem {
-  constructor () {
-    this.items = localStoreService.getItems()
-    this.props = localStoreService.getProps()
+  get items () {
+    return localStoreService.getItems()
+  }
+
+  get props () {
+    return localStoreService.getProps()
   }
 
   toggle (index) {

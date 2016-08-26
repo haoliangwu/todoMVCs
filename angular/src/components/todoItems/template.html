@@ -10,6 +10,6 @@
 </ul>
 <button class='btn' ng-click="$ctrl.clear()">Clean All</button>
 <div ng-hide="$ctrl.items.length === 0">
-<h4>Metedata</h4>
-<pre>{{$ctrl.items | filter:$ctrl.props.query | json}}</pre>
+    <h4>Metedata</h4>
+    <pre>{{$ctrl.items | json}}</pre>
 </div>
