@@ -5,15 +5,21 @@ export default class TodoController {
     this.query = ''
   }
 
+  reset () {
+    this.err = ''
+    this.query = ''
+    localStoreService.setProps({query: ''})
+  }
+
   handleChange () {
+    this.err = ''
     localStoreService.setProps({query: this.query})
   }
 
   addToDoItem (query) {
-    localStoreService.addItem(query)
+    const err = localStoreService.addItem(query)
 
-    // reset query str
-    this.query = ''
-    this.handleChange()
+    if (err) this.err = err
+    else this.reset()
   }
 }

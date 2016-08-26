@@ -1,3 +1,5 @@
+import errorHandler from './errorHandler'
+
 export default {
   props: {},
   items: [],
@@ -15,6 +17,10 @@ export default {
   },
 
   addItem(query) {
+    if (query.length === 0) return errorHandler.getErrorInfo(0)
+
+    if (this.items.some(e => query === e.text)) return errorHandler.getErrorInfo(1)
+
     this.items.push(
       {
         index: this.items.length,
