@@ -4,5 +4,9 @@ import template from './template.html'
 
 export default angular.module('todo', []).component('todo', {
   template: template,
-  controller: controller
+  controller: controller,
+  bindings: {
+    name: '<',
+    placeholder: '<'
+  }
 }).name

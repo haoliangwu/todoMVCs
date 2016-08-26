@@ -3,8 +3,6 @@ import { localStoreService } from '../../services'
 export default class TodoController {
   constructor () {
     this.query = ''
-    this.name = 'TodoMVC'
-    this.placeholder = 'add todo..'
   }
 
   handleChange () {
@@ -16,6 +14,6 @@ export default class TodoController {
 
     // reset query str
     this.query = ''
-    localStoreService.setProps({query: this.query})
+    this.handleChange()
   }
 }
