@@ -13,10 +13,12 @@ export default class GuessWord {
   }
 
   $onInit() {
+    this.result = ''
     this.words = []
   }
 
   start() {
+    this.result = 'I am guesssing, wait a minute..'
     guessService.start(this.token, json => {
       const {sessionId, word} = json
       this.word = word
@@ -33,17 +35,17 @@ export default class GuessWord {
     const {word} = json
 
     this.word = this.merge(this.word, word)
-    console.log(this.word)
-
     this.words.push({ count, text: word })
 
     if (this.word.indexOf('*') >= 0 && count < source.length) this.guess(source[count++])
-    else this.result()
+    else {
+      this.handleResult()
+    }
   }
 
-  result() {
-    guessService.result(this.token, this.sessionId, this.result, str => {
-      console.log(str)
+  handleResult() {
+    guessService.result(this.token, this.sessionId, this.word, str => {
+      this.result = this.word
       this._scope.$apply()
     })
   }
