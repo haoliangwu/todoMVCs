@@ -1,56 +1,60 @@
-import { guessService } from '../../services'
-
-let source = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-let count = 0
+import { guessService, strategyService } from '../../services'
 
 export default class GuessWord {
-  constructor($scope) {
+  constructor ($scope) {
     this._scope = $scope
     guessService.login(json => {
       const {token} = json
       this.token = token
     })
   }
-
-  $onInit() {
+  // lifecycle
+  $onInit () {
     this.result = ''
     this.words = []
   }
 
-  start() {
+  // service proxy
+  start () {
     this.result = 'I am guesssing, wait a minute..'
     guessService.start(this.token, json => {
       const {sessionId, word} = json
       this.word = word
       this.sessionId = sessionId
-      this.guess(source[count++])
+      this.guess(this.strategy())
     })
   }
 
-  guess(char) {
+  guess (char) {
+    console.log(char)
     guessService.guess(this.token, this.sessionId, char, this.handleGuess.bind(this))
   }
 
-  handleGuess(json) {
+  handleGuess (json) {
     const {word} = json
 
     this.word = this.merge(this.word, word)
-    this.words.push({ count, text: word })
+    this.words.push({ count: strategyService.count, text: word })
 
-    if (this.word.indexOf('*') >= 0 && count < source.length) this.guess(source[count++])
+    if (this.word.indexOf('*') >= 0 && strategyService.count < strategyService.source.length) this.guess(this.strategy())
     else {
       this.handleResult()
     }
   }
 
-  handleResult() {
+  handleResult () {
     guessService.result(this.token, this.sessionId, this.word, str => {
       this.result = this.word
       this._scope.$apply()
     })
   }
 
-  merge(current, next) {
+  // util
+  strategy () {
+    return strategyService['reverse']()
+  }
+
+  merge (current, next) {
     let _current = current.split('')
     let _next = next.split('')
 
