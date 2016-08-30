@@ -26,5 +26,13 @@ export default {
 
     start(token, cb) {
         this.post(`${HOST}${API.start}`, {}, token).then(cb)
+    },
+
+    guess(token, sessionId, char, cb) {
+        this.post(`${HOST}${API.guess}`, { sessionId, char }, token).then(cb)
+    },
+
+    result(token, sessionId, word, cb) {
+        this.post(`${HOST}${API.result}`, { sessionId, word }, token).then(cb)
     }
 }
