@@ -1,29 +1,3 @@
-.item-btn {
-    display: none;
-    margin: 1px;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    padding: 0;
-    border: none;
-}
-
-.item:hover .item-btn {
-    display: inline-block;
-}
-
-.delete:after {
-    content: '-'
-}
-
-.toggle:after {
-    content: '√'
-}
-
-.done {
-    text-decoration: line-through;
-}
-
-.btn-groups {
-    display: inline-block;
+span {
+    display: block
 }

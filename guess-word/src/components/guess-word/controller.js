@@ -1,5 +1,8 @@
 import { guessService } from '../../services'
 
+let source = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+let count = 0
+
 export default class GuessWord {
   constructor($scope) {
     this._scope = $scope
@@ -18,10 +21,7 @@ export default class GuessWord {
       const {sessionId, word} = json
       this.word = word
       this.sessionId = sessionId
-
-      let count = 0
-
-      this.guess('a')
+      this.guess(source[count++])
     })
   }
 
@@ -31,19 +31,29 @@ export default class GuessWord {
 
   handleGuess(json) {
     const {word} = json
-    this.word = word
-    this.words.push(word)
 
-    // if (this.word.indexOf('*') >= 0) this.guess('b', this.handleGuess)
-    this.result(word)
+    this.word = this.merge(this.word, word)
+    console.log(this.word)
+
+    this.words.push({ count, text: word })
+
+    if (this.word.indexOf('*') >= 0 && count < source.length) this.guess(source[count++])
+    else this.result()
   }
 
-  result(word) {
-    console.log(word)
-
-    guessService.result(this.token, this.sessionId, word, str => {
+  result() {
+    guessService.result(this.token, this.sessionId, this.result, str => {
       console.log(str)
       this._scope.$apply()
     })
+  }
+
+  merge(current, next) {
+    let _current = current.split('')
+    let _next = next.split('')
+
+    return _current.map((c, i) => {
+      return c === '*' ? _next[i] : _current[i]
+    }).join('')
   }
 }
