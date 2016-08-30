@@ -10,6 +10,20 @@ export default class GuessWord {
   }
   // lifecycle
   $onInit () {
+    this.algorithm = 'random'
+    this.algOptions = [{
+      id: 'random',
+      title: 'random'
+    }, {
+      id: 'loop',
+      title: 'loop'
+    }, {
+      id: 'squeeze',
+      title: 'squeeze'
+    }, {
+      id: 'reverse',
+      title: 'reverse'
+    }]
     this.result = ''
     this.words = []
   }
@@ -52,6 +66,10 @@ export default class GuessWord {
     })
   }
 
+  handleAlgChange () {
+    console.log(`current alg is ${this.algorithm}`)
+  }
+
   reset () {
     strategyService.count = 0
     this.result = 'I am guesssing, wait a minute..'
@@ -61,7 +79,7 @@ export default class GuessWord {
 
   // util
   strategy () {
-    return strategyService['random']()
+    return strategyService[this.algorithm]()
   }
 
   merge (current, next) {

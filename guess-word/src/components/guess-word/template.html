@@ -1,5 +1,7 @@
 <button ng-click="$ctrl.start()">Start</button>
+<select ng-model="$ctrl.algorithm" ng-options="alg.id as alg.title for alg in $ctrl.algOptions" ng-change="$ctrl.handleAlgChange()">
+</select>
 <h1>Result</h1>
 <span>{{$ctrl.result}}<span>
-<h1>process</h1>
+<h1>Process</h1>
 <span ng-repeat="word in $ctrl.words">{{word.count}}:{{word.text}}</span>
