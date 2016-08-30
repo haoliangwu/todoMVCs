@@ -30,7 +30,7 @@ export default class GuessWord {
 
   // service proxy
   start () {
-    if (this.words.length > 0) this.reset()
+    this.reset()
 
     this.result = 'I am guesssing, wait a minute..'
 
@@ -61,7 +61,7 @@ export default class GuessWord {
 
   handleResult () {
     guessService.result(this.token, this.sessionId, this.word, str => {
-      this.result = this.word
+      this.result = `The word is '${this.word}'. ${str}.`
       this._scope.$apply()
     })
   }
@@ -71,7 +71,7 @@ export default class GuessWord {
   }
 
   reset () {
-    strategyService.count = 0
+    strategyService._init()
     this.result = 'I am guesssing, wait a minute..'
     this.words = []
     this.word = ''

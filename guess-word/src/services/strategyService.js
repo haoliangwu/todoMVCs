@@ -1,6 +1,4 @@
 export default {
-  count: 0,
-  source: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
   loop: function () {
     const index = this.count++
 
@@ -26,5 +24,10 @@ export default {
     this.count++
 
     return this.source.splice(index, 1)[0]
+  },
+
+  _init: function () {
+    this.count = 0
+    this.source = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   }
 }
