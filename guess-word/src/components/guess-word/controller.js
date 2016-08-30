@@ -16,7 +16,10 @@ export default class GuessWord {
 
   // service proxy
   start () {
+    if (this.words.length > 0) this.reset()
+
     this.result = 'I am guesssing, wait a minute..'
+
     guessService.start(this.token, json => {
       const {sessionId, word} = json
       this.word = word
@@ -36,7 +39,7 @@ export default class GuessWord {
     this.word = this.merge(this.word, word)
     this.words.push({ count: strategyService.count, text: word })
 
-    if (this.word.indexOf('*') >= 0 && strategyService.count < strategyService.source.length) this.guess(this.strategy())
+    if (this.word.indexOf('*') >= 0) this.guess(this.strategy())
     else {
       this.handleResult()
     }
@@ -49,9 +52,16 @@ export default class GuessWord {
     })
   }
 
+  reset () {
+    strategyService.count = 0
+    this.result = 'I am guesssing, wait a minute..'
+    this.words = []
+    this.word = ''
+  }
+
   // util
   strategy () {
-    return strategyService['reverse']()
+    return strategyService['random']()
   }
 
   merge (current, next) {
