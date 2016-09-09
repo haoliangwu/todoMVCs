@@ -1,11 +1,11 @@
 import angular from 'angular'
-import { tab, tabs } from './components'
+import { child, parent } from './components'
 
 import './main.css'
 
 angular
   .module('app', [])
-  .component('tab', tab)
-  .component('tabs', tabs)
+  .component('parent', parent)
+  .component('child', child)
 
 if (module.hot) module.hot.accept()

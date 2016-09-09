@@ -1,0 +1,6 @@
+<div>
+    <a href="" ng-click="$ctrl.changeUser()">Parent to Child</a>
+    <h2>Parent User</h2>
+    <pre>{{$ctrl.user|json}}</pre>
+    <child user="$ctrl.user" on-update="$ctrl.updateUser($event)"></child>
+</div>

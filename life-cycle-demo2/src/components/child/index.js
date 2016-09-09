@@ -5,9 +5,9 @@ import template from './template.html'
 
 export default {
   bindings: {
-    selected: '<'
+    user: '<',
+    onUpdate: '&'
   },
-  transclude: true,
   template: template,
   controller: controller
 }
