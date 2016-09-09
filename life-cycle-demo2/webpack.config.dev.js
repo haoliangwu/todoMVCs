@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
+  devtool: 'inline-source-map',
   context: __dirname + '/src',
   entry: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './index.js'],
   output: {
