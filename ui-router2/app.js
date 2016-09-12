@@ -26,7 +26,7 @@ app.use(require('webpack-hot-middleware')(compiler, {
 
 app.use('/json', express.static('src/json'))
 
-app.get('/index', function (req, res) {
+app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'src/index.html'))
 })
 
