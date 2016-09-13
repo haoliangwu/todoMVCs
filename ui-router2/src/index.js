@@ -5,26 +5,26 @@ import { peopleService } from './services'
 // import './main.css'
 
 angular
-  .module('hellosolarsystem', ['ui.router'])
+  .module('hellosolarsystem', ['ui.router', 'ui.router.visualizer'])
   .component('hello', hello)
   .component('about', about)
   .component('people', people)
   .component('person', person)
-  .config(function ($stateProvider) {
+  .config([ '$stateProvider', function (states) {
     // hello
-    $stateProvider.state({
+    states.state({
       name: 'hello',
       url: '/hello',
       component: 'hello'
     })
     // about
-    $stateProvider.state({
+    states.state({
       name: 'about',
       url: '/about',
       component: 'about'
     })
 
-    $stateProvider.state({
+    states.state({
       name: 'people',
       url: '/people',
       component: 'people',
@@ -35,16 +35,16 @@ angular
       }
     })
 
-    $stateProvider.state({
+    states.state({
       name: 'person',
       url: '/person/{personId}',
       component: 'person',
       resolve: {
-        person: function ($transition$) {
+        person: ['$transition$', function ($transition$) {
           return peopleService.getPerson($transition$.params().personId)
-        }
+        }]
       }
     })
-  })
+  }])
 
 if (module.hot) module.hot.accept()
