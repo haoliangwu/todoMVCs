@@ -1,0 +1,19 @@
+.panel{
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+    background-color: #9351A6;
+    transition: background-color 2s;
+}
+
+.ng-hide-add, .ng-hide-remove {
+    transition: opacity 2s, background-color 2s;
+}
+
+.ng-hide-remove-active{
+    background-color: #5FCF80;
+}
+
+.ng-hide {
+    opacity: 0
+}
