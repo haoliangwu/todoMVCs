@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+<script src='index.js'></script>
+
+<body ng-app="app" ng-controller="Controller as ctrl">
+    <section>
+        <h4>toJson</h4>
+        <div ng-repeat="e in ctrl._toJson">{{e | json}}</div>
+    </section>
+    <section>
+        <h4>fromJson</h4>
+        <div ng-repeat="e in ctrl._fromJson">{{e}}</div>
+    </section>
+    <section>
+        <h4>bind</h4>
+        <div>{{ctrl.Fn()}}</div>
+        <div>{{ctrl.newFn()}}</div>
+    </section>
+    <section>
+        <h4>copy</h4>
+        <div ng-repeat="e in ctrl._copy">{{e}}</div>
+        <div>{{ctrl.dest | json}}</div>
+    </section>
+    <section>
+        <h4>equals</h4>
+        <div ng-repeat="e in ctrl._equals">{{e}}</div>
+    </section>
+</body>
+
+</html>
