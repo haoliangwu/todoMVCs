@@ -10,14 +10,6 @@
 
 <body ng-app="app" ng-controller="Controller as ctrl">
     <section>
-        <h4>toJson</h4>
-        <div ng-repeat="e in ctrl._toJson">{{e | json}}</div>
-    </section>
-    <section>
-        <h4>fromJson</h4>
-        <div ng-repeat="e in ctrl._fromJson">{{e}}</div>
-    </section>
-    <section>
         <h4>bind</h4>
         <div>{{ctrl.Fn()}}</div>
         <div>{{ctrl.newFn()}}</div>
@@ -30,6 +22,30 @@
     <section>
         <h4>equals</h4>
         <div ng-repeat="e in ctrl._equals">{{e}}</div>
+    </section>
+    <section>
+        <h4>extend</h4>
+        <div ng-repeat="e in ctrl._extends">{{e}}</div>
+    </section>
+    <section>
+        <h4>forEach</h4>
+        <div>{{ctrl._forEach1 | json}}</div>
+        <div>{{ctrl._forEach2 | json}}</div>
+    </section>
+    <section>
+        <h4>toJson/fromJson</h4>
+        <div ng-repeat="e in ctrl._toJson">{{e | json}}</div>
+        <div ng-repeat="e in ctrl._fromJson">{{e}}</div>
+    </section>
+    <section>
+        <h4>identity</h4>
+        <div>{{ctrl._identity(ctrl.Fn1, 3)}}</div>
+        <div>{{ctrl._identity(undefined, 3)}}</div>
+        <div>{{ctrl._identity(null, 3)}}</div>
+    </section>
+    <section>
+        <h4>is****</h4>
+        <div>{{ctrl._isArray}}</div>
     </section>
 </body>
 
