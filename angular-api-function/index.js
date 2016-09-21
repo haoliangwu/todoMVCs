@@ -84,4 +84,3 @@ angular.module('app', [])
     this._isString = angular.isString('foo')
     this._isUndefined = angular.isUndefined(undefined)
   })
-
