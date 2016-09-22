@@ -46,6 +46,18 @@
     <section>
         <h4>is****</h4>
         <div>{{ctrl._isArray}}</div>
+        <div>{{ctrl._isDate}}</div>
+        <div>{{ctrl._isDefined}}</div>
+        <div>{{ctrl._isElement}}</div>
+        <div>{{ctrl._isFunction}}</div>
+        <div>{{ctrl._isNumber}}</div>
+        <div>{{ctrl._isObject}}</div>
+        <div>{{ctrl._isString}}</div>
+        <div>{{ctrl._isUndefined}}</div>
+    </section>
+    <section>
+        <h4>merge</h4>
+        <div ng-repeat="e in ctrl._merge">{{e | json}}</div>
     </section>
 </body>
 

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+<script src='index.js'></script>
+
+<body ng-app="app" ng-controller="Controller as ctrl">
+    <section>
+        <h4>a</h4>
+        <a>Anchor directive without href</a>
+        <a href="">Anchor directive with empty href</a>
+        <a href="http://littlelyon.com">Anchor directive with href</a>
+    </section>
+    <section>
+        <form name="myForm">
+        <h4>input:{{ctrl._input}}</h4>
+        <input name="_input" ng-model="ctrl._input" ng-pattern="/abc/"></input>
+        {{myForm._input.$error.pattern}}
+        </form>
+    </section>
+</body>
+
+</html>

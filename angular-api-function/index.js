@@ -76,11 +76,17 @@ angular.module('app', [])
     // is****
     this._isArray = angular.isArray([])
     this._isDate = angular.isDate(new Date())
-    this._isDefined = angular.isDefined(undefined)
+    this._isDefined = angular.isDefined({})
     this._isElement = angular.isElement(document.body)
     this._isFunction = angular.isFunction(this.Fn)
     this._isNumber = angular.isNumber(1)
     this._isObject = angular.isObject({})
     this._isString = angular.isString('foo')
     this._isUndefined = angular.isUndefined(undefined)
+
+    // merge
+    this._merge = [
+      angular.merge({foo: '1'}, {foo: '2', bar: '1'}),
+      angular.merge({}, {foo: '1'}, {foo: '2', bar: '1'})
+    ]
   })
