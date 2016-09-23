@@ -17,9 +17,9 @@
     </section>
     <section>
         <form name="myForm">
-        <h4>input:{{ctrl._input}}</h4>
-        <input name="_input" ng-model="ctrl._input" ng-pattern="/abc/"></input>
-        {{myForm._input.$error.pattern}}
+            <h4>input</h4>
+            <input name="_input" ng-model="ctrl._input" ng-pattern="/abc/"> {{ctrl._input}}
+            <input type="checkbox" name="checkbox" ng-model="ctrl._checkbox" ng-true-value="'YES'" ng-false-value="'NO'"> {{ctrl._checkbox}}
         </form>
     </section>
 </body>
