@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
 <script src='index.js'></script>
@@ -18,8 +19,33 @@
     <section>
         <form name="myForm">
             <h4>input</h4>
-            <input name="_input" ng-model="ctrl._input" ng-pattern="/abc/"> {{ctrl._input}}
-            <input type="checkbox" name="checkbox" ng-model="ctrl._checkbox" ng-true-value="'YES'" ng-false-value="'NO'"> {{ctrl._checkbox}}
+            <code>myForm.$valid = {{myForm.$valid}}</code><br>
+            <code>myForm.$error = {{myForm.$error}}</code><br>
+            
+            <input name="_input" ng-model="ctrl._input"> 
+            {{ctrl._input}}
+            <input type="checkbox" name="checkbox" ng-model="ctrl._checkbox" ng-true-value="'YES'" ng-false-value="'NO'"> 
+            {{ctrl._checkbox}}
+            <input type="date" placeholder="yyyy-MM-dd" ng-model="ctrl._date">
+            <input type="datetime-local" placeholder="yyyy-MM-dd" ng-model="ctrl._date">
+            <input type="month" placeholder="yyyy-MM-dd" ng-model="ctrl._date">
+            <input type="week" placeholder="yyyy-MM-dd" ng-model="ctrl._date">
+            <input type="time" placeholder="yyyy-MM-dd" ng-model="ctrl._date">
+            {{ctrl._date | date: "yyyy-MM-dd"}}
+            <input type="email" ng-model="ctrl._email"> 
+            {{ctrl._email}}
+            <input type="number" step="2" ng-model="ctrl._number">
+            {{ctrl._number}}
+            <input type="radio" value="Foo" ng-model="ctrl._radio">
+            <input type="radio" value="Bar" ng-model="ctrl._radio">
+            <input type="radio" value="Baz" ng-model="ctrl._radio">
+            {{ctrl._radio}}
+            <input type="range" ng-model="ctrl._range" min="0" max="100">
+            {{ctrl._range}}
+            <input type="text" ng-model="ctrl._text">
+            {{ctrl._text}}
+            <input type="url" ng-model="ctrl._url">
+            {{ctrl._url}}
         </form>
     </section>
 </body>
