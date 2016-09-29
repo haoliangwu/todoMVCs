@@ -1,5 +1,6 @@
 import angular from 'angular'
 import { movies, movie_add, movie_edit, movie_view } from './components'
+import { movieService } from './services'
 
 import './main.css'
 
@@ -13,8 +14,14 @@ angular
     states.state({
       name: 'movies',
       url: '/movies',
-      component: 'movies'
+      component: 'movies',
+      resolve: {
+        movies: ['$resource', function ($resource) {
+          return movieService.movieResource($resource).query()
+        }]
+      }
     })
+
     states.state({
       name: 'viewMovie',
       url: '/movies/:id/view',
