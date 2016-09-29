@@ -32,4 +32,8 @@ angular.module('app', ['ngSanitize'])
         $scope.myForm1._ngModelOpts.$rollbackViewValue()
       }
     }
+    this._ngNonBindable = 'ngNonBindable'
+    this._ngRequired = ''
+    this._ngShow = !this._ngHide
+    this._ngSwitch = 'other'
   }])

@@ -41,7 +41,7 @@
         </form>
     </section>
     <section>
-        <h4>ng-****</h4>
+        <h4>simple ng-****</h4>
         <span ng-bind="ctrl._ngBind"></span>
         <span ng-bind-html="ctrl._ngBindHtml"></span>
         <input type="text" ng-model="ctrl._ngBindTemplate"></label><br>
@@ -70,11 +70,44 @@
         <input type="text" ng-keydown="ctrl._cb('onkeydown')">
         <input type="text" ng-keypress="ctrl._cb('onkeypress')">
         <input type="text" ng-keyup="ctrl._cb('onkeyup')">
-        <input type="text" ng-model="ctrl._ngList" ng-list="|">
-        {{ctrl._ngList | json}}
+        <input type="text" ng-model="ctrl._ngList" ng-list="|"> {{ctrl._ngList | json}}
         <form name="myForm1">
-        <input name='_ngModelOpts' type="text" ng-model="ctrl._ngModelOptions" ng-model-options="{updateOn: 'blur'}" ng-keyup="ctrl._cancel($event)">{{ctrl._ngModelOptions}}
+            <input name='_ngModelOpts' type="text" ng-model="ctrl._ngModelOptions" ng-model-options="{updateOn: 'blur'}" ng-keyup="ctrl._cancel($event)">{{ctrl._ngModelOptions}}
         </form>
+        <button ng-mousedown="ctrl._cb('onmousedown')">ng-mousedown</button>
+        <button ng-mouseenter="ctrl._cb('onmouseenter')">ng-mouseenter</button>
+        <button ng-mouseleave="ctrl._cb('onmouseleave')">ng-mouseleave</button>
+        <button ng-mousemove="ctrl._cb('mousemove')">ng-mousemove</button>
+        <button ng-mouseover="ctrl._cb('mouseover')">ng-mouseover</button>
+        <button ng-mouseup="ctrl._cb('mouseup')">ng-mouseup</button>
+        <span>{{ctrl._ngNonBindable}}</span>
+        <span ng-non-bindable>{{ctrl._ngNonBindable}}</span>
+        <input type="text" ng-paste="ctrl._cb('onpaste')">
+        <input type="text" ng-readonly="true" value="I'm Angular" aria-label="Readonly field" />
+        <span ng-repeat="n in [1,2,3,4,5]">{{n}}</span>
+        <span ng-repeat="n in [1,2,2,2,5] track by $index">{{n}}</span>
+        <form name="myForm2">
+            <input name="_ngRequired" ng-model='ctrl._ngRequired' type="text" ng-required="true">Required is: {{myForm2._ngRequired.$error.required}}
+        </form>
+        <select aria-label="ngSelected demo">
+            <option>Hello!</option>
+            <option id="greet" ng-selected="true">Greetings!</option>
+        </select>
+        <input type="checkbox" ng-model="ctrl._ngShow">{{ctrl._ngShow}}
+        <span ng-show="ctrl._ngShow">i am ngShow panel</span>
+        <span ng-style="{'background-color':'green'}">ngStyle</span>
+        <form ng-submit="ctrl._cb('onsubmit')">
+            <input type="submit" id="submit" value="Submit" />
+        </form>
+        <h4>advanced ng-****</h4>
+        <select ng-model="ctrl._ngSwitch" ng-options="item for item in ['foo','bar','baz']"></select>
+        <div ng-switch="ctrl._ngSwitch">
+            <span ng-switch-when="foo">foo</span>
+            <span ng-switch-when="bar">bar</span>
+            <span ng-switch-when="baz">baz</span>
+            <span ng-switch-default>default</span>
+        </div>
     </section>
 </body>
+
 </html>
