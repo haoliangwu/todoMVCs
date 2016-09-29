@@ -1,49 +1,36 @@
 import angular from 'angular'
-// import { hello, about, people, person } from './components'
-import { peopleService } from './services'
+import { movies, movie_add, movie_edit, movie_view } from './components'
 
-// import './main.css'
+import './main.css'
 
 angular
-  .module('movie-crud-app', ['ui.router'])
-  // .component('hello', hello)
-  // .component('about', about)
-  // .component('people', people)
-  // .component('person', person)
+  .module('movie-crud-app', ['ui.router', 'ngResource'])
+  .component('movies', movies)
+  .component('add', movie_add)
+  .component('edit', movie_edit)
+  .component('view', movie_view)
   .config([ '$stateProvider', function (states) {
-    // hello
     states.state({
-      name: 'hello',
-      url: '/hello',
-      component: 'hello'
+      name: 'movies',
+      url: '/movies',
+      component: 'movies'
     })
-    // about
     states.state({
-      name: 'about',
-      url: '/about',
-      component: 'about'
+      name: 'viewMovie',
+      url: '/movies/:id/view',
+      component: 'view'
     })
 
     states.state({
-      name: 'people',
-      url: '/people',
-      component: 'people',
-      resolve: {
-        people: function () {
-          return peopleService.getAllPeople()
-        }
-      }
+      name: 'newMovie',
+      url: '/movies/new',
+      component: 'add'
     })
 
     states.state({
-      name: 'person',
-      url: '/person/{personId}',
-      component: 'person',
-      resolve: {
-        person: ['$transition$', function ($transition$) {
-          return peopleService.getPerson($transition$.params().personId)
-        }]
-      }
+      name: 'editMovie',
+      url: '/movies/:id/edit',
+      component: 'edit'
     })
   }])
 

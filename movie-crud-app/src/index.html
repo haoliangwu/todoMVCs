@@ -4,13 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <script src="//cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+<script src="//cdn.bootcss.com/angular-resource/1.5.8/angular-resource.js"></script>
 <script src="//cdn.bootcss.com/angular-ui-router/1.0.0-beta.1/angular-ui-router.js"></script>
 <script src='bundle.js'></script>
 
 <body ng-app="movie-crud-app">
-    
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" ui-sref="movies">The Movie App</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a ui-sref="movies">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row top-buffer">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div ui-view></div>
+                <!-- This is where our views will load -->
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

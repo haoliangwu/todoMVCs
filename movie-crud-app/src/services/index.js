@@ -1,1 +1,1 @@
-// export { default as peopleService } from './people'
+export { default as movieService } from './movie'
