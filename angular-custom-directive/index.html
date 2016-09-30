@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<script src="http://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+<script src='index.js'></script>
+
+<body ng-app="app" ng-controller="Controller">
+    <div my-customer-one></div>
+    <my-customer-two customer="customer"></my-customer-two>
+    <span my-current-time format="format"></span>
+    <my-dialog>Check out the contents, {{name}}!</my-dialog>
+</body>
+
+</html>

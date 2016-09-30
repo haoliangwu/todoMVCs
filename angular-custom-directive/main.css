@@ -1,0 +1,13 @@
+a,
+input,
+span {
+    display: block;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
