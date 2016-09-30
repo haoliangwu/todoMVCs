@@ -1,7 +1,10 @@
-import controller from './controller'
+// import controller from './controller'
 import template from './template.html'
 
 export default {
   template: template,
-  controller: ['$state', '$stateParams', controller]
+  // controller: ['$state', '$stateParams', controller],
+  bindings: {
+    movie: '<'
+  }
 }

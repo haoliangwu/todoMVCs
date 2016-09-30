@@ -1,4 +1,4 @@
-import { movieService } from '../../services'
+// import { movieService } from '../../services'
 
 export default class MovieEditCtrl {
   constructor ($state, $stateParams) {
@@ -14,10 +14,12 @@ export default class MovieEditCtrl {
       })
     }
 
-    this.loadMovie() // Load a movie which can be edited on UI
+  // this.loadMovie()
+  // Load a movie which can be edited on UI
   }
 
-  loadMovie () { // Issues a GET request to /api/movies/:id to get a movie to update
-    this.movie = movieService.getMovieById({ id: this._$stateParams.id })
-  }
+// loadMovie () {
+// Issues a GET request to /api/movies/:id to get a movie to update
+// this.movie = movieService.getMovieById({ id: this._$stateParams.id })
+// }
 }

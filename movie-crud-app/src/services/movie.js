@@ -21,5 +21,9 @@ export default {
         res(movie)
       })
     })
+  },
+
+  createMovie: function () {
+    return new movieResource()
   }
 }

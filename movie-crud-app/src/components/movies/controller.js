@@ -6,7 +6,7 @@ export default class MovieListCtrl {
   $onInit () {
     this.deleteMovie = function (movie) {
       movie.$delete(() => {
-        this._$state.go('movies') // redirect to home
+        this._$state.reload('movies') // redirect to home
       })
     }
   }
