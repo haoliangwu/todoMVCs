@@ -1,8 +1,7 @@
 import { movieService } from '../../services'
 
 export default class MovieEditCtrl {
-  constructor ($resource, $state, $stateParams) {
-    this._$resource = movieService.movieResource($resource)
+  constructor ($state, $stateParams) {
     this._$state = $state
     this._$stateParams = $stateParams
   }
@@ -19,6 +18,6 @@ export default class MovieEditCtrl {
   }
 
   loadMovie () { // Issues a GET request to /api/movies/:id to get a movie to update
-    this.movie = this._$resource.get({ id: this._$stateParams.id })
+    this.movie = movieService.getMovieById({ id: this._$stateParams.id })
   }
 }

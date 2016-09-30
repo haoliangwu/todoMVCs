@@ -5,7 +5,7 @@ import { movieService } from './services'
 import './main.css'
 
 angular
-  .module('movie-crud-app', ['ui.router', 'ngResource'])
+  .module('movie-crud-app', ['ui.router'])
   .component('movies', movies)
   .component('add', movie_add)
   .component('edit', movie_edit)
@@ -16,16 +16,10 @@ angular
       url: '/movies',
       component: 'movies',
       resolve: {
-        movies: ['$resource', function ($resource) {
-          return movieService.movieResource($resource).query()
-        }]
+        movies: function () {
+          return movieService.getAllMovies()
+        }
       }
-    })
-
-    states.state({
-      name: 'viewMovie',
-      url: '/movies/:id/view',
-      component: 'view'
     })
 
     states.state({
@@ -35,9 +29,31 @@ angular
     })
 
     states.state({
-      name: 'editMovie',
-      url: '/movies/:id/edit',
-      component: 'edit'
+      name: 'movies.viewMovie',
+      url: '/:id/view',
+      component: 'view',
+      resolve: {
+        movie: ['movies', '$stateParams', function (movies, $stateParams) {
+          if (!movies.$resolved) return movieService.getMovieById({ id: $stateParams.id })
+
+          console.log("use the context's movies")
+          return movies.find(movie => movie._id === +$stateParams.id)
+        }]
+      }
+    })
+
+    states.state({
+      name: 'movies.editMovie',
+      url: '/:id/edit',
+      component: 'edit',
+      resolve: {
+        movie: ['movies', '$stateParams', function (movies, $stateParams) {
+          if (!movies.$resolved) return movieService.getMovieById({ id: $stateParams.id })
+
+          console.log("use the context's movies")
+          return movies.find(movie => movie._id === +$stateParams.id)
+        }]
+      }
     })
   }])
 

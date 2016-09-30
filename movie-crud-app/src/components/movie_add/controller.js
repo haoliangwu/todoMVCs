@@ -1,8 +1,8 @@
 import { movieService } from '../../services'
 
 export default class MovieCreateCtrl {
-  constructor ($resource, $state) {
-    this._$resource = movieService.movieResource($resource)
+  constructor ($state) {
+    this._$resource = movieService.movieResource()
     this._$state = $state
   }
 

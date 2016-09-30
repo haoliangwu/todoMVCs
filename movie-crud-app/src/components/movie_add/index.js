@@ -3,5 +3,5 @@ import template from './template.html'
 
 export default {
   template: template,
-  controller: ['$resource', '$state', controller]
+  controller: ['$state', controller]
 }
