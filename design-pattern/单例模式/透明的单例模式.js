@@ -22,4 +22,8 @@ var CreateDiv = (function () {
 var a = new CreateDiv('instance1')
 var b = new CreateDiv('instance2')
 
-console.log(a === b);
+console.log(a === b)
+
+/*缺点
+使用了闭包和匿名函数自调用，增加了复杂度
+CreateDiv函数不符合单一职责原则*/
