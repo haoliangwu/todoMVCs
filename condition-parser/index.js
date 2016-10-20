@@ -13,18 +13,20 @@ var mapping = {
     'and': function (a, b) { return a && b },
     // 'in': 'in_',
     'or': function (a, b) { return a || b },
-    // 'not': 'not_',
-    // 'str': 'str_',
-    // 'int': 'int_',
+    'not': function (a) { return !a },
+    'str': function (a) { return a.toString() },
+    'int': function (a) { return parseInt(a) },
     '+': function (a, b) { return a + b },
     '-': function (a, b) { return a - b },
     '*': function (a, b) { return a * b },
     '/': function (a, b) { return new Number(a / b).toFixed(2) },
     // todo 实现一个根据字段取值的方法
     'field_value': function name(a) {
-            return a + ' world'
-        }
-        // 'judge': 'judge',
+        return a + ' world'
+    },
+    'judge': function (a, b, c) {
+        return a ? b : c
+    },
 }
 
 var parser = function (arr) {
