@@ -1,38 +1,26 @@
 import { Observable } from 'rxjs'
+import './main.css'
 
-var increaseButton = document.querySelector('#increase')
-var increase = Observable.fromEvent(increaseButton, 'click')
-  // Again we map to a function the will increase the count
-  .map(() => state => Object.assign({}, state, {count: state.count + 1}))
+const _draggle = document.querySelector('.block')
+const _container = document.querySelector('.draggable')
+const _draggleMouseDowns = Observable.fromEvent(_draggle, 'mousedown')
+const _draggleContainerMouseMoves = Observable.fromEvent(_container, 'mousemove')
+const _draggleContainerMouseUps = Observable.fromEvent(_container, 'mouseup')
 
-var decreaseButton = document.querySelector('#decrease')
-var decrease = Observable.fromEvent(decreaseButton, 'click')
-  // We also map to a function that will decrease the count
-  .map(() => state => Object.assign({}, state, {count: state.count - 1}))
+const _draggleMouseDrags = _draggleMouseDowns
+  .concatMap(startPoint => {
+    return _draggleContainerMouseMoves
+      .takeUntil(_draggleContainerMouseUps)
+      .map(movePoint => {
+        return {
+          pageX: movePoint.pageX - startPoint.layerX,
+          pageY: movePoint.pageY - startPoint.layerY
+        }
+      })
+  })
+  .do(position => {
+    _draggle.style.left = position.pageX + 'px'
+    _draggle.style.top = position.pageY + 'px'
+  })
 
-var inputElement = document.querySelector('#input')
-var input = Observable.fromEvent(inputElement, 'keypress')
-  // Let us also map the keypress events to produce an inputValue state
-  .map(event => state => Object.assign({}, state, {inputValue: event.target.value}))
-
-// We merge the three state change producing observables
-var state = Observable.merge(
-  increase,
-  decrease,
-  input
-).scan((state, changeFn) => changeFn(state), {
-  count: 0,
-  inputValue: ''
-})
-
-// We subscribe to state changes and update the DOM
-var prevState = {}
-state.subscribe((state) => {
-  if (state.count !== prevState.count) {
-    document.querySelector('#count').innerHTML = state.count
-  }
-  if (state.inputValue !== prevState.inputValue) {
-    document.querySelector('#hello').innerHTML = 'Hello ' + state.inputValue
-  }
-  prevState = state
-})
+_draggleMouseDrags.subscribe()

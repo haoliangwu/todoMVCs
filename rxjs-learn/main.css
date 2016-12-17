@@ -1,0 +1,12 @@
+.draggable {
+    height: 500px;
+    background: #ccc;
+}
+
+.block {
+    position: absolute;
+    display: inline-block;
+    background: #fff;
+    width: 50px;
+    height: 50px;
+}
