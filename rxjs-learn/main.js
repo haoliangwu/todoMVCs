@@ -1,39 +1,38 @@
-import Rx from 'rxjs'
-import $ from 'jquery'
-import _ from 'lodash'
+import { Observable } from 'rxjs'
 
-// 从已有数据转化 Observable
-Rx.Observable.of('foo', 'bar')
-Rx.Observable.from([1, 2, 3])
-Rx.Observable.fromEvent(document.querySelector('.button1'), 'click')
-// Rx.Observable.fromPromise(new Promise())
+var increaseButton = document.querySelector('#increase')
+var increase = Observable.fromEvent(increaseButton, 'click')
+  // Again we map to a function the will increase the count
+  .map(() => state => Object.assign({}, state, {count: state.count + 1}))
 
-// 创建自定义 Observable
-const Observable1 = new Rx.Subject()
-Observable1.subscribe(v => console.log(v))
-Observable1.next(1)
+var decreaseButton = document.querySelector('#decrease')
+var decrease = Observable.fromEvent(decreaseButton, 'click')
+  // We also map to a function that will decrease the count
+  .map(() => state => Object.assign({}, state, {count: state.count - 1}))
 
-const Observable2 = Rx.Observable.create(observer => {
-  observer.next('foo')
-  setTimeout(() => observer.next('bar'), 1000)
+var inputElement = document.querySelector('#input')
+var input = Observable.fromEvent(inputElement, 'keypress')
+  // Let us also map the keypress events to produce an inputValue state
+  .map(event => state => Object.assign({}, state, {inputValue: event.target.value}))
+
+// We merge the three state change producing observables
+var state = Observable.merge(
+  increase,
+  decrease,
+  input
+).scan((state, changeFn) => changeFn(state), {
+  count: 0,
+  inputValue: ''
 })
-Observable2.subscribe(value => console.log(value))
 
-const input = Rx.Observable.fromEvent(document.querySelector('input'), 'keypress')
-
-const stopStream = Rx.Observable.fromEvent(document.querySelector('button'), 'click')
-
-// 管理事件流
-// input
-// .filter(event => event.target.value.length > 2)
-// .delay(200)
-// .throttleTime(200)
-// .debounceTime(200)
-// .take(3)
-// .takeUntil(stopStream)
-// .subscribe(e => console.log(e.target.value))
-
-// 转化新值
-input
-  .map(e => e.target.value)
-  .subscribe(v => console.log(v))
+// We subscribe to state changes and update the DOM
+var prevState = {}
+state.subscribe((state) => {
+  if (state.count !== prevState.count) {
+    document.querySelector('#count').innerHTML = state.count
+  }
+  if (state.inputValue !== prevState.inputValue) {
+    document.querySelector('#hello').innerHTML = 'Hello ' + state.inputValue
+  }
+  prevState = state
+})

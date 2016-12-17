@@ -18,18 +18,13 @@ div.innerHTML = `
     <p>
       Check out <strong>README.md</strong> or head to <a href="https://github.com/egoist/tooling">tooling</a> to get more instructions.
     </p>
+    <button id="increase">+</button>
+    <button id="decrease">-</button>
+    <input id="input"></input>
+    <span id="count"></span>
+    <span id="hello"></span>
   </div>
 `
 document.body.appendChild(div)
-
-const body = $(document.body)
-
-const button1 = $('<button class="button1">I am Button1</button>')
-
-body.append(button1)
-
-const input1 = $('<input class="input1">')
-
-body.append(input1)
 
 require('./main')
