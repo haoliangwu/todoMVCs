@@ -61,17 +61,27 @@
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
         var socket = io();
+        var nickname = 'guest'
         $('form').submit(function() {
-            socket.emit('chat message', $('#m').val());
+            socket.emit('chat message', $('#m').val(), {user: nickname});
             $('#m').val('');
             return false;
         });
+
+        socket.on('connect', function() {
+            const number = Math.floor(1000*Math.random())
+
+            nickname = 'guest' + number
+
+            socket.emit('user:login', nickname)
+        })
+
         socket.on('chat message', function(msg) {
             $('#messages').append($('<li>').text(msg));
         });
 
         socket.on('user:login', msg => {
-            console.log(msg)
+            console.log(msg);
         })
 
         socket.on('user:logout', msg => {
