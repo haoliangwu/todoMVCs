@@ -7,8 +7,14 @@ app.get('/', function (req, res) {
 })
 
 io.on('connection', function (socket) {
+  socket.broadcast.emit('user:login', 'someone login')
+
   socket.on('chat message', function (msg) {
     io.emit('chat message', msg)
+  })
+
+  socket.on('disconnect', function () {
+    io.emit('user:logout', 'someone logout')
   })
 })
 
