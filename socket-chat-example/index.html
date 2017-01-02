@@ -14,7 +14,7 @@
             font: 13px Helvetica, Arial;
         }
         
-        form {
+        div {
             background: #000;
             padding: 3px;
             position: fixed;
@@ -22,21 +22,21 @@
             width: 100%;
         }
         
-        form input {
+        div input {
             border: 0;
             padding: 10px;
             width: 80%;
             margin-right: .5%;
         }
         
-        form button.send {
+        div button.send {
             width: 9%;
             background: rgb(130, 224, 255);
             border: none;
             padding: 10px;
         }
         
-        form button.leave {
+        div button.leave {
             width: 9%;
             background: rgb(130, 224, 255);
             border: none;
@@ -61,27 +61,39 @@
 
 <body>
     <ul id="messages"></ul>
-    <form action="">
+    <div>
         <input id="m" autocomplete="off" />
-        <button class="send" type="submit">Send</button>
+        <button class="send">Send</button>
         <button class="leave" type="button">Leave</button>
-    </form>
+    </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
+        const $div = $('div')
+        const $input = $('#m')
+        const $btnSend = $('.send')
+        const $btnLeave = $('.leave')
+        const $messagesPanel = $('#messages')
+        let $typingHint
+        let $typingHintTimer
+
         var socket = io();
         var nickname = 'guest'
-        $('form').submit(function() {
-            socket.emit('chat message', $('#m').val(), {
+
+        $btnSend.click(function() {
+            socket.emit('chat message', $input.val(), {
                 user: nickname
             });
-            $('#messages').append($('<li>').text(`${nickname} : ${$('#m').val()}`));
-            $('#m').val('');
-            return false;
+            $messagesPanel.append($('<li>').text(`${nickname}(yourself): ${$('#m').val()}`));
+            $input.val('');
         });
 
-        $('.leave').click(function() {
+        $btnLeave.click(function() {
             socket.emit('user:logout', nickname)
+        })
+
+        $input.keypress(function() {
+            socket.emit('user:typing', nickname)
         })
 
         socket.on('connect', function() {
@@ -93,7 +105,11 @@
         })
 
         socket.on('chat message', function(msg) {
-            $('#messages').append($('<li>').text(msg));
+            clearTimeout($typingHintTimer)
+            $typingHint.remove()
+            $typingHint = undefined
+
+            $messagesPanel.append($('<li>').text(msg));
         });
 
         socket.on('user:login', msg => {
@@ -102,6 +118,20 @@
 
         socket.on('user:logout', msg => {
             console.log(msg)
+        })
+
+        socket.on('user:typing', msg => {
+            if ($typingHint) {
+                clearTimeout($typingHintTimer)
+            } else {
+                $typingHint = $('<li class="typing-hint">')
+                $messagesPanel.append($typingHint.text(msg))
+            }
+
+            $typingHintTimer = setTimeout(function() {
+                $typingHint.remove()
+                $typingHint = undefined
+            }, 3000)
         })
     </script>
 </body>

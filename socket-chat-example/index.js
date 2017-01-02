@@ -7,8 +7,8 @@ app.get('/', function (req, res) {
 })
 
 io.on('connection', function (socket) {
-  socket.on('user:login', function (msg) {
-    socket.broadcast.emit('user:login', `${msg} login`)
+  socket.on('user:login', function (user) {
+    socket.broadcast.emit('user:login', `${user} login`)
   })
 
   socket.on('chat message', function (msg, opts) {
@@ -17,8 +17,12 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('chat message', _msg)
   })
 
-  socket.on('user:logout', function (msg) {
-    socket.broadcast.emit('user:logout', `${msg} logout`)
+  socket.on('user:logout', function (user) {
+    socket.broadcast.emit('user:logout', `${user} logout`)
+  })
+
+  socket.on('user:typing', function (user) {
+    socket.broadcast.emit('user:typing', `${user} is typing`)
   })
 })
 
