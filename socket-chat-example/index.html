@@ -92,7 +92,11 @@
             socket.emit('user:logout', nickname)
         })
 
-        $input.keypress(function() {
+        $input.keypress(function(e) {
+            if(e.keyCode === 13) {
+                $btnSend.click()
+                return false
+            }
             socket.emit('user:typing', nickname)
         })
 
