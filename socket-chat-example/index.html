@@ -25,11 +25,18 @@
         form input {
             border: 0;
             padding: 10px;
-            width: 90%;
+            width: 80%;
             margin-right: .5%;
         }
         
-        form button {
+        form button.send {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+        
+        form button.leave {
             width: 9%;
             background: rgb(130, 224, 255);
             border: none;
@@ -55,7 +62,9 @@
 <body>
     <ul id="messages"></ul>
     <form action="">
-        <input id="m" autocomplete="off" /><button>Send</button>
+        <input id="m" autocomplete="off" />
+        <button class="send" type="submit">Send</button>
+        <button class="leave" type="button">Leave</button>
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -63,13 +72,20 @@
         var socket = io();
         var nickname = 'guest'
         $('form').submit(function() {
-            socket.emit('chat message', $('#m').val(), {user: nickname});
+            socket.emit('chat message', $('#m').val(), {
+                user: nickname
+            });
+            $('#messages').append($('<li>').text(`${nickname} : ${$('#m').val()}`));
             $('#m').val('');
             return false;
         });
 
+        $('.leave').click(function() {
+            socket.emit('user:logout', nickname)
+        })
+
         socket.on('connect', function() {
-            const number = Math.floor(1000*Math.random())
+            const number = Math.floor(1000 * Math.random())
 
             nickname = 'guest' + number
 

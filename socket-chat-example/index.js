@@ -14,11 +14,11 @@ io.on('connection', function (socket) {
   socket.on('chat message', function (msg, opts) {
     const _msg = `${opts.user}: ${msg}`
 
-    io.emit('chat message', _msg)
+    socket.broadcast.emit('chat message', _msg)
   })
 
-  socket.on('disconnect', function () {
-    io.emit('user:logout', 'someone logout')
+  socket.on('user:logout', function (msg) {
+    socket.broadcast.emit('user:logout', `${msg} logout`)
   })
 })
 
