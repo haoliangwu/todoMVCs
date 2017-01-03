@@ -1,0 +1,32 @@
+.main {
+    width: 100vw;
+    height: 1000vh;
+}
+
+.panel {
+    width: 410px;
+    height: 210px;
+    background: url("//www.w3cplus.com/sites/default/files/blogs/2016/1612/bg-position.png") no-repeat;
+}
+
+.panel:nth-child(1) {
+    background-position: 10px 10px;
+}
+
+.panel:nth-child(2) {
+    background-position: center;
+    /*background-position: 50% 50%;*/
+}
+
+.panel:nth-child(3){
+    background-position: 20% 20%;
+}
+
+/*
+当为百分比时，相对位置计算公式为
+(父容器的长/宽 - 背景图片长/宽) * 相对百分比
+*/
+.panel:nth-child(4){
+    background-position: 62px 22px;
+    /*background-position: (410 - 100) * 20% px (210 - 100) * 20% px;*/
+}
