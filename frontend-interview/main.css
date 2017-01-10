@@ -5,3 +5,10 @@
 .clock {
     /*TODO*/
 }
+
+.question_4_trigger{
+    background: #ccc;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+}
