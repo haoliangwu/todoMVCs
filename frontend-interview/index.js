@@ -1,8 +1,11 @@
 import './main.css'
 import { question1, question2, question5 } from './main'
 
+let question2Result = [1, 1, 2, 2, 3, 3]
+
 try {
   question1.add(1).add(2).add(3).add(4)
+  question2Result = question2([1, 1, 2, 2, 3, 3])
 } catch (e) {}
 
 const projectName = 'frontend-interview'
@@ -25,7 +28,7 @@ div.innerHTML = `
   <h2>question 1</h2>
   <span>${question1.result}</span>
   <h2>question 2</h2>
-  <span>[${question2([1, 1, 2, 2, 3, 3])}]</span>
+  <span>[${question2Result}]</span>
   <h2>question 3</h2>
   <div class="clock-panel" style="display: inline-block; width: 150px; height: 150px; background: #ccc; border-radius: 50%;">
     <div class="clock"></div>
