@@ -22,7 +22,6 @@ function count (dataList, max) {
   return ifTake > ifDontTake ? ifTake : ifDontTake
 }
 
-// console.log(count(goods.concat([]), weight))
 
 let currentGood = 0
 
@@ -52,32 +51,4 @@ for (let i = 1; i <= _goods.length; i++) {
 }
 
 console.log(results.join('-'))
-// function search (dataList, max) {
-//   let sum = 0
-//   while (dataList.length >= 0 && max >= 0){
-//     time++
-//     if (time > 100) return
 
-//     const arg1 = dataList.concat([])
-//     const arg2 = dataList.concat([])
-
-//     const last = arg2.pop()
-
-//     if (count(arg1, max) === count(arg2, max - last) + last) {
-//       sum += last
-//       console.log('index: %s, weight: %s', last, last)
-//       max -= last
-//     }
-
-//     return sum
-//   }
-// // summer = 0
-// //   while(i>=0 and j>=0):
-// //       if(solv(i, j) == solv(i-1, j-conduct[i])+conduct[i]):
-// //           summer += conduct[i]
-// //           print("index:"+str(i+1)+"  weight:"+str(conduct[i]))
-// //           j -= conduct[i]
-// //       i -= 1
-// }
-
-// console.info(search(goods, weight))
