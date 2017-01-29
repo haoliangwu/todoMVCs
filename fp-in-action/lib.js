@@ -90,3 +90,8 @@ export const toUpperCase = function (x) {
 export const toLowerCase = function (x) {
   return x.toLowerCase()
 }
+
+export const trace = _.curry(function (x, y) {
+  console.log(x, y)
+  return y
+})
