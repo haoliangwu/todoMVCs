@@ -33,6 +33,8 @@ export const question2 = function (arr) {
 */
 
 /* question 4
+点击灰色方框会弹出 trigger 字符串
+
 实现1 当点击页面的任何地方，可弹出 document 字符串（使用window.alert）
 实现2 当点击灰色正方形时，只弹出 trigger 字符串
 实现3 当点击灰色正方形时，先弹出 document 字符串, 再弹出 trigger 字符串
