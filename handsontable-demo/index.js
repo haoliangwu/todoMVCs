@@ -2,7 +2,8 @@ import $ from 'jquery'
 import Handsontable from 'handsontable/dist/handsontable.full'
 import 'handsontable/dist/handsontable.full.css'
 
-import {MyExternalPluginSkeleton} from './plugin'
+import { MyExternalPluginSkeleton } from './plugin'
+import { PasswordEditor } from './editor'
 
 $('<div id="example"></div>').appendTo(document.body)
 
@@ -15,11 +16,15 @@ var data = [
 
 Handsontable.plugins.registerPlugin('externalPluginSkeleton', MyExternalPluginSkeleton)
 
-var container = document.getElementById('example')
-var hot = new Handsontable(container, {
+var hot = new Handsontable(document.getElementById('example'), {
   data: data,
-  rowHeaders: true,
-  colHeaders: true,
-  dropdownMenu: true,
-  foo: true
+  columns: [
+    {
+      type: 'text'
+    },
+    {
+      editor: PasswordEditor
+      // If you want to use string 'password' instead of passing the actual editor class check out section "Registering editor"
+    }
+  ]
 })
