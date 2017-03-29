@@ -1,0 +1,30 @@
+{
+    "extends": "standard",
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "rules": {
+        "camelcase": "warn",
+        "brace-style": "warn",
+        "no-redeclare": "warn",
+        "one-var": "warn",
+        "eqeqeq": "warn",
+        "handle-callback-err": "warn",
+        "no-unused-vars": "warn",
+        "no-new-wrappers": "warn",
+        "no-eval": "warn",
+        "no-tabs": "warn",
+        "new-cap": "warn",
+        "no-useless-return": "warn",
+        "no-useless-escape": "warn"
+    }
+}
