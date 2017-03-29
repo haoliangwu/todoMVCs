@@ -27,6 +27,11 @@ export class MyExternalPluginSkeleton extends Handsontable.plugins.BasePlugin {
     this.addHook('afterChange', (changes, source) => {
       if (!changes) return
 
+      const x = changes[0][0]
+      const y = changes[0][1]
+
+      console.log(this.hot.getCell(x, y))
+
       console.log(changes, source)
       console.log(this.foo)
     })
