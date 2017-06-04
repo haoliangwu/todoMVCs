@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { handleAction } from 'redux-actions'
 import { addTodoAction, ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './actions'
+import {handlePageChanged} from './pagination/reducers'
 const { SHOW_ALL } = VisibilityFilters
 
 function visibilityFilter (state = SHOW_ALL, action) {
