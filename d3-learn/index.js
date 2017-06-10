@@ -44,8 +44,6 @@ var xScale = d3.scaleBand()
   .range([0, width - padding.left - padding.right])
   .round(true)
 
-console.log(xScale(7))
-
 // y轴的比例尺
 var yScale = d3.scaleLinear()
   .domain([0, d3.max(dataset)])
