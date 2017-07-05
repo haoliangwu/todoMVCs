@@ -7,10 +7,5 @@
         "outDir": "dist",
         "sourceRoot": "src",
         "watch": true
-    },
-    "typeAcquisition": {
-        "include": [
-            "ramda"
-        ]
     }
 }

@@ -1,4 +1,4 @@
-import R from 'ramda'
+
 // Boolean
 let isDone: boolean = true
 
@@ -17,4 +17,6 @@ let x: [string, number]
 
 x = ['a', 1]
 // x = [1, 'a']
-R.always(1)
+
+enum Color { Red, Green, Blue }
+let c: Color = Color.Red
