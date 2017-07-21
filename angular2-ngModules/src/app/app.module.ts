@@ -8,11 +8,13 @@ import { TitleComponent } from './title/title.component'
 import { UserService } from './user.service'
 
 /* Contact Imports */
-import
-{ ContactModule } from './contact/contact.module'
+import { ContactModule } from './contact/contact.module'
+
+/* Routing Module */
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  imports: [BrowserModule, ContactModule],
+  imports: [BrowserModule, ContactModule, AppRoutingModule],
   declarations: [AppComponent, HighlightDirective, TitleComponent],
   providers: [UserService],
   bootstrap: [AppComponent],
