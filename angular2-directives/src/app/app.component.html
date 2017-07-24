@@ -10,3 +10,14 @@
 <p appHighlight>just test the highlight attr-directive ..</p>
 <p [appHighlight]="color">just test the highlight attr-directive with custom color ..</p>
 
+<button (click)="condition=true">to true(show B)</button>
+<button (click)="condition=false">to false(show A)</button>
+
+<p *appUnless="condition" class="unless a">
+  (A) This paragraph is displayed because the condition is false.
+</p>
+
+<p *appUnless="!condition" class="unless b">
+  (B) Although the condition is true,
+  this paragraph is displayed because myUnless is set to false.
+</p>
