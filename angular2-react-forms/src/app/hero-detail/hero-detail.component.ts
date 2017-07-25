@@ -12,12 +12,22 @@ export class HeroDetailComponent implements OnChanges {
   heroForm: FormGroup;
   states = states;
 
+  nameChangeLog: string[] = [];
+
+  logNameChange() {
+    const nameControl = this.heroForm.get('name');
+    nameControl.valueChanges.forEach(
+      (value: string) => this.nameChangeLog.push(value)
+    );
+  }
+
   get secretLairs(): FormArray {
     return this.heroForm.get('secretLairs') as FormArray;
   };
 
   constructor(private fb: FormBuilder) {
     this.createForm();
+    this.logNameChange()
   }
 
   ngOnChanges() {
@@ -48,11 +58,11 @@ export class HeroDetailComponent implements OnChanges {
     this.secretLairs.push(this.fb.group(new Address()));
   }
 
-  removeLair(){
+  removeLair() {
     this.secretLairs.removeAt(this.secretLairs.length - 1)
   }
 
-  resetLair(){
+  resetLair() {
     this.ngOnChanges()
   }
 }
