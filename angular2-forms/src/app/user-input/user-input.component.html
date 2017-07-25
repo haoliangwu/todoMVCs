@@ -1,0 +1,23 @@
+<h2>with native event object</h2>
+<input (keyup)="onClickMe1($event)">
+<p>
+  {{clickMessage}}
+</p>
+
+<h2>with ref-var but without callback</h2>
+<input #box (keyup)="0">
+<p>
+  {{box.value}}
+</p>
+
+<h2>with ref-var with callback</h2>
+<input #box1 (keyup)="onClickMe2(box1.value)">
+<p>
+  {{clickMessage}}
+</p>
+
+<h2>with ref-var with callback and event filter</h2>
+<input #box2 (keyup.enter)="onClickMe2(box2.value)" (blur)="onClickMe2(box2.value)">
+<p>
+  {{clickMessage}}
+</p>
