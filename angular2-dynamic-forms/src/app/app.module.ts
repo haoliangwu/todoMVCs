@@ -5,12 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-form-question.component';
+import { ForbiddenValidatorDirective } from './forbidden-name.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     DynamicFormComponent,
-    DynamicFormQuestionComponent
+    DynamicFormQuestionComponent,
+    ForbiddenValidatorDirective
   ],
   imports: [
     BrowserModule,

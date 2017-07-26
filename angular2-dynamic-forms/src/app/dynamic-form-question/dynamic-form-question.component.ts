@@ -10,5 +10,6 @@ import { QuestionBase }     from '../question-base';
 export class DynamicFormQuestionComponent {
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;
-  get isValid() { return this.form.controls[this.question.key].valid; }
+  get isRequired() { return this.form.controls[this.question.key].getError('required'); }
+  get isForbidden() {return this.form.get(this.question.key).getError('forbiddenName')}
 }
