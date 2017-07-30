@@ -11,3 +11,5 @@ export class TodoItem {
     this.done = status
   }
 }
+
+export type TodoItems = TodoItem[]

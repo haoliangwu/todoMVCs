@@ -1,8 +1,22 @@
-<input type="text" required [(ngModel)]="todoItem.name">
-<button (click)="createNewTodoItem(todoItem)">text</button>
+<div>
+  <form [formGroup]="todoForm" (ngSubmit)="createNewTodoItem(todoItem.name)" novalidate>
+    <input type="text" formControlName="name">
+    <button type="submit">create</button>
+  </form>
+  <div *ngIf="todoForm.dirty && isTodoNameRequired" >
+    name is required
+  </div>
+</div>
+<div>
+  show done todo:
+  <select [(ngModel)]="showAll">
+  <option [value]="true">true </option>
+  <option [value]="false">false </option>
+</select>
+</div>
 
 <ul>
-  <li *ngFor="let todo of todos">
-    <todo-list-item ></todo-list-item>
+  <li *ngFor="let todo of todos | done:showAll ">
+    <todo-list-item [todo]="todo" (removeRequest)="removeTodoItem($event)"></todo-list-item>
   </li>
 </ul>
