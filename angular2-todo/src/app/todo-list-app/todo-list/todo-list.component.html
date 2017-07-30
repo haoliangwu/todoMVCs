@@ -1,0 +1,8 @@
+<input type="text" required [(ngModel)]="todoItem.name">
+<button (click)="createNewTodoItem(todoItem)">text</button>
+
+<ul>
+  <li *ngFor="let todo of todos">
+    <todo-list-item ></todo-list-item>
+  </li>
+</ul>
