@@ -3,4 +3,5 @@
   <button (click)="toggle(todo)">toggle</button>
   <button (click)="onRemoveItem(todo)">remove</button>
   <button (click)="viewDetail(todo)">view detail</button>
+  <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
 </div>

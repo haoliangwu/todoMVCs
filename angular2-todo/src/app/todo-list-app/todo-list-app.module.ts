@@ -10,6 +10,7 @@ import { DonePipe } from './done.pipe';
 
 import { TodoListAppRoutingModule } from './todo-list-app-routing.module';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
+import { TodoFocusComponent } from './todo-focus/todo-focus.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { TodoDetailComponent } from './todo-detail/todo-detail.component';
     ReactiveFormsModule,
     TodoListAppRoutingModule
   ],
-  declarations: [TodoListItemComponent, TodoListComponent, DonePipe, TodoDetailComponent],
+  declarations: [TodoListItemComponent, TodoListComponent, DonePipe, TodoDetailComponent, TodoFocusComponent],
   exports: [TodoListComponent],
   providers: [TodoListsService]
 })

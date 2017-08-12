@@ -1,36 +1,7 @@
-import { Component, OnInit, HostBinding, AnimationEntryMetadata } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap'
-
-export const slideInDownAnimation =
-  trigger('routeAnimation', [
-    state('*',
-      style({
-        opacity: 1,
-        transform: 'translateX(0)'
-      })
-    ),
-    transition(':enter', [
-      style({
-        opacity: 0,
-        transform: 'translateX(-100%)'
-      }),
-      animate('0.5s ease-in')
-    ]),
-    transition(':leave', [
-      animate('0.5s ease-out', style({
-        opacity: 0,
-        transform: 'translateX(100%)'
-      }))
-    ])
-  ]);
+import { slideInDownAnimation } from '../animations';
 
 @Component({
   selector: 'app-todo-detail',
@@ -62,7 +33,7 @@ export class TodoDetailComponent implements OnInit {
   }
 
   viewList() {
-    this.router.navigate(['/todos', { previousId: this.id }])
+    this.router.navigate(['../', { previousId: this.id }], { relativeTo: this.route })
   }
 
 }

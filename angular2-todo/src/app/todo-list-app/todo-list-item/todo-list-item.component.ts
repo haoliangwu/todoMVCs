@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TodoItem } from '../model';
 
 @Component({
@@ -13,7 +13,8 @@ export class TodoListItemComponent implements OnInit {
   @Output() removeRequest: EventEmitter<TodoItem> = new EventEmitter()
 
   constructor(
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -28,7 +29,7 @@ export class TodoListItemComponent implements OnInit {
   }
 
   viewDetail(todo: TodoItem) {
-    this.router.navigate(['/todo', todo.id])
+    this.router.navigate([todo.id], { relativeTo: this.route})
   }
 
 }
