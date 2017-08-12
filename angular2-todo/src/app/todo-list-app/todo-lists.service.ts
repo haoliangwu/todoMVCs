@@ -8,9 +8,9 @@ export class TodoListsService {
 
   getTodoItems(): TodoItem[] {
     return [
-      new TodoItem('foo', false),
-      new TodoItem('bar', true),
-      new TodoItem('baz', false)
+      new TodoItem(1, 'foo', false),
+      new TodoItem(2, 'bar', true),
+      new TodoItem(3, 'baz', false)
     ]
   }
 

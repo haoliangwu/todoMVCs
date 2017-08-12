@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { TodoItem } from '../model';
 import { TodoListsService } from '../todo-lists.service';
+
+import 'rxjs/add/operator/switchMap'
 
 @Component({
   selector: 'todo-list',
@@ -10,17 +13,22 @@ import { TodoListsService } from '../todo-lists.service';
 })
 export class TodoListComponent implements OnInit {
   todos: TodoItem[]
-  todoItem: TodoItem = new TodoItem('', false)
-  showAll: boolean = false
+  todoItem: TodoItem
+  showAll: boolean = true
   todoForm: FormGroup
   todoNameControl: FormControl
+  previousId: number
 
   service: TodoListsService
   fb: FormBuilder
 
   get isTodoNameRequired() { return this.todoForm.getError('required', ['name']) }
 
-  constructor(service: TodoListsService, fb: FormBuilder) {
+  constructor(
+    service: TodoListsService,
+    fb: FormBuilder,
+    private route: ActivatedRoute
+  ) {
     this.service = service
     this.fb = fb
   }
@@ -35,6 +43,14 @@ export class TodoListComponent implements OnInit {
     this.todoNameControl.valueChanges.forEach((val: string) => {
       this.todoItem.name = val
     })
+
+    this.route.paramMap
+      .switchMap((params: ParamMap) => {
+        return Promise.resolve(params.get('previousId'))
+      })
+      .subscribe((previousId: string) => {
+        this.previousId = parseInt(previousId)
+      })
   }
 
   createNewTodoItem(todoName: string) {
@@ -43,7 +59,7 @@ export class TodoListComponent implements OnInit {
       return
     }
 
-    const item = new TodoItem(todoName)
+    const item = new TodoItem(new Date().getTime(), todoName)
     this.todos.push(item)
     this.todoNameControl.reset('')
   }
@@ -51,6 +67,10 @@ export class TodoListComponent implements OnInit {
   removeTodoItem(todo: TodoItem) {
     const index = this.todos.indexOf(todo)
     this.todos.splice(index, 1)
+  }
+
+  isSelected(todo: TodoItem) {
+    return todo.id === this.previousId
   }
 
 }

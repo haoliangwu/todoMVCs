@@ -8,13 +8,17 @@ import { TodoListItemComponent } from './todo-list-item/todo-list-item.component
 import { TodoListsService } from './todo-lists.service';
 import { DonePipe } from './done.pipe';
 
+import { TodoListAppRoutingModule } from './todo-list-app-routing.module';
+import { TodoDetailComponent } from './todo-detail/todo-detail.component';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TodoListAppRoutingModule
   ],
-  declarations: [TodoListItemComponent, TodoListComponent, DonePipe],
+  declarations: [TodoListItemComponent, TodoListComponent, DonePipe, TodoDetailComponent],
   exports: [TodoListComponent],
   providers: [TodoListsService]
 })

@@ -1,8 +1,10 @@
 export class TodoItem {
+  id: number
   name: string
   done: boolean
 
-  constructor(name: string, done: boolean = false) {
+  constructor(id: number, name: string, done: boolean = false) {
+    this.id = id
     this.name = name
     this.done = done
   }

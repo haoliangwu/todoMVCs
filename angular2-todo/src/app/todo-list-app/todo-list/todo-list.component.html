@@ -15,8 +15,10 @@
 </select>
 </div>
 
+previousId: {{previousId}}
+
 <ul>
-  <li *ngFor="let todo of todos | done:showAll ">
+  <li *ngFor="let todo of todos | done:showAll " [class.selected]="todo.id === previousId">
     <todo-list-item [todo]="todo" (removeRequest)="removeTodoItem($event)"></todo-list-item>
   </li>
 </ul>
