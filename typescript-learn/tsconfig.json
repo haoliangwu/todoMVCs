@@ -6,6 +6,9 @@
         "sourceMap": true,
         "outDir": "dist",
         "sourceRoot": "src",
-        "watch": true
+        "watch": true,
+        "lib": [
+          "es6", "dom"
+        ]
     }
 }
