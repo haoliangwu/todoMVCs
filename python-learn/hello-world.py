@@ -1,3 +1,3 @@
-print '''line1
-line2
-line3'''
+#!/usr/bin/env python
+
+print 'hello world'
