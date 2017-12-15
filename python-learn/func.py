@@ -88,3 +88,10 @@ opts = {'initial': 5}
 n = calc(*m, **opts)
 
 print n
+
+
+def func(a, b, c=0, *args, **kw):
+    print 'a =', a, 'b =', b, 'c =', c, 'args =', args, 'kw =', kw
+
+
+func(1, 1, 3, iu=8)
